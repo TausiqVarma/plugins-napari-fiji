@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- The SciJava BOM ensures all ImageJ dependencies use compatible versions -->
+    <parent>
+        <groupId>org.scijava</groupId>
+        <artifactId>pom-scijava</artifactId>
+        <version>31.1.0</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.example.fiji</groupId>
+    <artifactId>fiji-evi-rw</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <name>Fiji EVI Read/Write Plugin</name>
+    <description>A Fiji plugin for reading and writing custom .evi image files.</description>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>scijava.public</id>
+            <url>https://maven.scijava.org/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Core SciJava annotations and IO framework -->
+        <dependency>
+            <groupId>org.scijava</groupId>
+            <artifactId>scijava-common</artifactId>
+        </dependency>
+        
+        <!-- ImageJ2 Core for Datasets -->
+        <dependency>
+            <groupId>net.imagej</groupId>
+            <artifactId>imagej-common</artifactId>
+        </dependency>
+
+        <!-- ImageJ 1.x Core (for guaranteed UI popups) -->
+        <dependency>
+            <groupId>net.imagej</groupId>
+            <artifactId>ij</artifactId>
+        </dependency>
+
+        <!-- ImgLib2 for N-dimensional arrays -->
+        <!-- ImgLib2 for N-dimensional arrays -->
+        <dependency>
+            <groupId>net.imglib2</groupId>
+            <artifactId>imglib2</artifactId>
+        </dependency>
+    </dependencies>
+</project>

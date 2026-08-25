@@ -1,0 +1,58 @@
+# =============================================================================
+# pyproject.toml — napari-evi-reader
+# =============================================================================
+# Build configuration for the napari EVI reader plugin.
+# Uses hatchling as the build backend and declares the npe2 manifest
+# entry-point so napari can auto-discover the plugin at runtime.
+# =============================================================================
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# ---------------------------------------------------------------------------
+# Project metadata
+# ---------------------------------------------------------------------------
+[project]
+name = "napari-evi-rw"
+version = "0.1.0"
+description = "A napari reader and writer plugin for the custom .evi volumetric image format."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+
+authors = [
+    { name = "Your Name", email = "you@example.com" },
+]
+
+# Runtime dependencies — napari and numpy are the only hard requirements.
+dependencies = [
+    "napari",
+    "numpy",
+    "zarr",
+    "napari-ome-zarr",
+    "ome-zarr",
+]
+
+# Optional: classifier tags for PyPI discoverability
+classifiers = [
+    "Framework :: napari",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+]
+
+# ---------------------------------------------------------------------------
+# napari manifest entry-point  (THIS IS THE CRITICAL SECTION)
+# ---------------------------------------------------------------------------
+# npe2 discovers plugins by scanning this entry-point group.
+# The key   = plugin name (must match the 'name' field in napari.yaml)
+# The value = Python path to the napari.yaml manifest file
+[project.entry-points."napari.manifest"]
+napari-evi-rw = "napari_evi_rw:napari.yaml"
+
+# ---------------------------------------------------------------------------
+# Hatch — tell hatchling where our source tree lives
+# ---------------------------------------------------------------------------
+[tool.hatch.build.targets.wheel]
+packages = ["src/napari_evi_rw"]

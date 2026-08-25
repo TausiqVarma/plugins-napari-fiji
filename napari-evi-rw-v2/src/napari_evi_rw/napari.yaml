@@ -1,0 +1,47 @@
+# =============================================================================
+# napari.yaml — npe2 plugin manifest for napari-evi-reader
+# =============================================================================
+# This file declares the plugin's contributions to napari using the modern
+# npe2 manifest schema.  napari discovers it at runtime via the entry-point
+# declared in pyproject.toml:
+#
+#   [project.entry-points."napari.manifest"]
+#   napari-evi-reader = "napari_evi_reader:napari.yaml"
+#
+# Schema reference:
+#   https://napari.org/stable/plugins/manifest.html
+# =============================================================================
+
+name: napari-evi-rw
+display_name: EVI Read/Writer
+# Contributions ---------------------------------------------------------------
+contributions:
+
+  # -- Commands ---------------------------------------------------------------
+  # Each contribution type (reader, writer, widget…) references a command by
+  # its id.  Commands map an id → a Python callable.
+  commands:
+    - id: napari-evi-rw.get_reader
+      title: Open EVI file
+      python_name: napari_evi_rw._reader:get_reader
+    - id: napari-evi-rw.write_multiple
+      title: Save all layers to EVI
+      python_name: napari_evi_rw._writer:write_multiple
+
+  # -- Readers ----------------------------------------------------------------
+  # Declare that this plugin can read files matching *.evi.
+  # napari will call the command above; if it returns a callable, napari
+  # invokes that callable to obtain LayerData.
+  readers:
+    - command: napari-evi-rw.get_reader
+      accepts_directories: false
+      filename_patterns:
+        - "*.evi"
+
+  # -- Writers ----------------------------------------------------------------
+  writers:
+    - command: napari-evi-rw.write_multiple
+      layer_types:
+        - "image*"
+      filename_extensions:
+        - ".evi"
